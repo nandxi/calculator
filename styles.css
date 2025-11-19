@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  gap: 20px;
+  padding: 20px;
+  width: 150px;
+  height: auto;
+  flex-wrap: wrap;
+}
+
+.display {
+  border: 2px solid black;
+  height: 30px;
+  text-align: right;
+  padding: 10px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid black;
+  gap: 3px;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons button {
+  display: inline-block;
+  padding: 3px;
+  margin: 2px;
+  width: 40px;
+}
