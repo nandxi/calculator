@@ -19,15 +19,20 @@
 .buttons {
   display: flex;
   flex-wrap: wrap;
-  border: 2px solid black;
-  gap: 3px;
-  justify-content: center;
+  gap: 8px;
+  justify-content: space-between;
   align-items: center;
 }
 
 .buttons button {
   display: inline-block;
-  padding: 3px;
-  margin: 2px;
+  padding: 5px;
   width: 40px;
+  background-color: #ffffff;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
