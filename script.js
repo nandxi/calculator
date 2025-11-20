@@ -70,8 +70,10 @@ for (let operator of operators) {
 }
 
 equal.addEventListener("click", () => {
-  display.textContent = "";
-  display.textContent = evaluateString(numString);
+  if (checkIfTwoNums(numString)) {
+    display.textContent = "";
+    display.textContent = evaluateString(numString);
+  }
 })
 
 clear.addEventListener("click", () => {
