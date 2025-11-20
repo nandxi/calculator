@@ -25,13 +25,26 @@ function evaluateString(string) {
   return operation(+num1, +num2);
 }
 
+function defineOperation(operator) {
+  if (operator.id === "add") {
+    operation = add;
+  } else if (operator.id === "subtract") {
+    operation = subtract;
+  } else if (operator.id === "multiply") {
+    operation = multiply;
+  } else if (operator.id === "divide") {
+    operation = divide;
+  }
+  return operation;
+}
+
 let numbers = document.querySelectorAll(".number");
 let display = document.querySelector(".display");
 let clear = document.querySelector("#clear");
 let operators = document.querySelectorAll(".operator");
 let equal = document.querySelector("#equal");
 let operation;
-let operationSymbol;
+let operationSymbol = "";
 let numString = "";
 
 for (let number of numbers) {
@@ -43,15 +56,7 @@ for (let number of numbers) {
 
 for (let operator of operators) {
   operator.addEventListener("click", () => {
-    if (operator.id === "add") {
-      operation = add;
-    } else if (operator.id === "subtract") {
-      operation = subtract;
-    } else if (operator.id === "multiply") {
-      operation = multiply;
-    } else if (operator.id === "divide") {
-      operation = divide;
-    }
+    operation = defineOperation(operator);
     operationSymbol = operator.textContent;
     numString += operator.textContent;
     display.textContent += operator.textContent;
