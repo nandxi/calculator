@@ -25,19 +25,30 @@ function evaluateString(string) {
   return operation(+num1, +num2);
 }
 
+function checkIfTwoNums(string) {
+  if (string.split(operationSymbol).length === 2) {
+    return true;
+  }
+  return false;
+}
+
 let numbers = document.querySelectorAll(".number");
 let display = document.querySelector(".display");
 let clear = document.querySelector("#clear");
 let operators = document.querySelectorAll(".operator");
 let equal = document.querySelector("#equal");
 let operation;
-let operationSymbol;
+let operationSymbol = "";
 let numString = "";
 
 for (let number of numbers) {
   number.addEventListener("click", () => {
     numString += number.textContent;
     display.textContent += number.textContent;
+    if (operationSymbol !== "" && checkIfTwoNums(numString)) {
+      numString = evaluateString(numString);
+      display.textContent = numString;
+    }
   })
 }
 
