@@ -45,15 +45,15 @@ for (let number of numbers) {
   number.addEventListener("click", () => {
     numString += number.textContent;
     display.textContent += number.textContent;
-    if (operationSymbol !== "" && checkIfTwoNums(numString)) {
-      numString = evaluateString(numString);
-      display.textContent = numString;
-    }
   })
 }
 
 for (let operator of operators) {
   operator.addEventListener("click", () => {
+    if (operationSymbol !== "" && checkIfTwoNums(numString)) {
+      numString = evaluateString(numString);
+      display.textContent = numString;
+    }
     if (operator.id === "add") {
       operation = add;
     } else if (operator.id === "subtract") {
