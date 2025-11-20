@@ -20,6 +20,11 @@ function operate(operator, num1, num2) {
 
 let numbers = document.querySelectorAll(".number");
 let display = document.querySelector(".display");
+let clear = document.querySelector("#clear");
+let operators = document.querySelectorAll(".operator");
+let equal = document.querySelector("#equal");
+let operation;
+let operationSymbol;
 let numString = "";
 
 for (let number of numbers) {
@@ -28,10 +33,6 @@ for (let number of numbers) {
     display.textContent += number.textContent;
   })
 }
-
-let operators = document.querySelectorAll(".operator");
-let operation;
-let operationSymbol;
 
 for (let operator of operators) {
   operator.addEventListener("click", () => {
@@ -50,7 +51,6 @@ for (let operator of operators) {
   })
 }
 
-let equal = document.querySelector("#equal");
 equal.addEventListener("click", () => {
   display.textContent = "";
   let numStringSplit = numString.split(operationSymbol);
@@ -59,7 +59,6 @@ equal.addEventListener("click", () => {
   display.textContent = operation(+num1, +num2);
 })
 
-let clear = document.querySelector("#clear");
 clear.addEventListener("click", () => {
   display.textContent = "";
   numString = "";
