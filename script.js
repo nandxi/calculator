@@ -18,6 +18,13 @@ function operate(operator, num1, num2) {
   return operator(num1, num2);
 }
 
+function evaluateString(string) {
+  let stringArr = string.split(operationSymbol);
+  let num1 = stringArr[0];
+  let num2 = stringArr[1];
+  return operation(+num1, +num2);
+}
+
 let numbers = document.querySelectorAll(".number");
 let display = document.querySelector(".display");
 let clear = document.querySelector("#clear");
@@ -53,10 +60,7 @@ for (let operator of operators) {
 
 equal.addEventListener("click", () => {
   display.textContent = "";
-  let numStringSplit = numString.split(operationSymbol);
-  let num1 = numStringSplit[0];
-  let num2 = numStringSplit[1];
-  display.textContent = operation(+num1, +num2);
+  display.textContent = evaluateString(numString);
 })
 
 clear.addEventListener("click", () => {
