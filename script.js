@@ -23,6 +23,7 @@ function evaluateString(string) {
   let num1 = stringArr[0];
   let num2 = stringArr[1];
   let result = operation(+num1, +num2).toString();
+  clearTheResult = true;
   return result;
 }
 
@@ -55,9 +56,14 @@ let operation;
 let operationSymbol = "";
 let numString = "";
 const validOperators = ["+", "-", "*", "/"];
+let clearTheResult = false;
 
 for (let number of numbers) {
   number.addEventListener("click", () => {
+    if (clearTheResult) {
+      clear.click();
+      clearTheResult = false;
+    }
     numString += number.textContent;
     updateDisplay(number.textContent);
   })
@@ -69,6 +75,7 @@ for (let operator of operators) {
       numString = evaluateString(numString);
       clearDisplay();
       updateDisplay(numString);
+      clearTheResult = false;
     }
     if (operator.id === "add") {
       operation = add;
