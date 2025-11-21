@@ -11,9 +11,6 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
-  if (num2 === 0) {
-    return "Nice Try Buddy!";
-  }
   return num1 / num2;
 }
 
@@ -29,10 +26,23 @@ function evaluateString(string) {
 }
 
 function checkIfTwoNums(string) {
-  if (string.split(operationSymbol).length === 2) {
+  if (string.split(operationSymbol).filter((item) => item !== "").length === 2) {
     return true;
   }
   return false;
+}
+
+function clearDisplay() {
+  display.textContent = "";
+}
+
+function updateDisplay(string) {
+  if (string == "Infinity") {
+    display.textContent = "NICE TRY BUDDY!";
+    numString = "";
+  } else {
+    display.textContent += string;
+  }
 }
 
 let numbers = document.querySelectorAll(".number");
@@ -47,7 +57,7 @@ let numString = "";
 for (let number of numbers) {
   number.addEventListener("click", () => {
     numString += number.textContent;
-    display.textContent += number.textContent;
+    updateDisplay(number.textContent);
   })
 }
 
@@ -55,7 +65,8 @@ for (let operator of operators) {
   operator.addEventListener("click", () => {
     if (operationSymbol !== "" && checkIfTwoNums(numString)) {
       numString = evaluateString(numString);
-      display.textContent = numString;
+      clearDisplay();
+      updateDisplay(numString);
     }
     if (operator.id === "add") {
       operation = add;
@@ -68,18 +79,18 @@ for (let operator of operators) {
     }
     operationSymbol = operator.textContent;
     numString += operator.textContent;
-    display.textContent += operator.textContent;
+    updateDisplay(operator.textContent);
   })
 }
 
 equal.addEventListener("click", () => {
   if (checkIfTwoNums(numString)) {
-    display.textContent = "";
-    display.textContent = evaluateString(numString);
+    clearDisplay();
+    updateDisplay(evaluateString(numString));
   }
 })
 
 clear.addEventListener("click", () => {
-  display.textContent = "";
+  clearDisplay();
   numString = "";
 })
