@@ -22,7 +22,8 @@ function evaluateString(string) {
   let stringArr = string.split(operationSymbol);
   let num1 = stringArr[0];
   let num2 = stringArr[1];
-  return operation(+num1, +num2);
+  let result = operation(+num1, +num2).toString();
+  return result;
 }
 
 function checkIfTwoNums(string) {
@@ -53,6 +54,7 @@ let equal = document.querySelector("#equal");
 let operation;
 let operationSymbol = "";
 let numString = "";
+const validOperators = ["+", "-", "*", "/"];
 
 for (let number of numbers) {
   number.addEventListener("click", () => {
@@ -78,8 +80,14 @@ for (let operator of operators) {
       operation = divide;
     }
     operationSymbol = operator.textContent;
-    numString += operator.textContent;
-    updateDisplay(operator.textContent);
+    if (validOperators.includes(numString.at(-1))) {
+      numString = numString.replace(numString.at(-1), operationSymbol);
+      clearDisplay();
+      updateDisplay(numString);
+    } else {
+      numString += operator.textContent;
+      updateDisplay(operator.textContent);
+    }
   })
 }
 
