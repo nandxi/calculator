@@ -20,8 +20,15 @@ function operate(operator, num1, num2) {
 
 function evaluateString(string) {
   let stringArr = string.split(operationSymbol);
-  let num1 = stringArr[0];
-  let num2 = stringArr[1];
+  let num1;
+  let num2;
+  if (string.charAt(0) === "-" && operationSymbol === "-") {
+    num1 = -stringArr[1];
+    num2 = stringArr[2];
+  } else {
+    num1 = stringArr[0];
+    num2 = stringArr[1];
+  }
   let result = operation(+num1, +num2).toString();
   clearTheResult = true;
   return result;
